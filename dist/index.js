@@ -6,10 +6,12 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dataBaseConnection_1 = __importDefault(require("./dataBaseConnection"));
+const routes_1 = __importDefault(require("./routes"));
 // this expresRouter is used as app 
 const router = (0, express_1.default)();
 router.use(express_1.default.urlencoded({ extended: false }));
 router.use(express_1.default.json());
+router.use('/', routes_1.default);
 const PORT = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 6060;
 dataBaseConnection_1.default.then(() => {
     router.listen(PORT, () => {
