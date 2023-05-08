@@ -4,8 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const docterControler_1 = __importDefault(require("../../controlers/docter/docterControler"));
 const docterRoutes = (0, express_1.default)();
-docterRoutes.use("/", (req, res) => {
-    res.send("Docters");
-});
+docterRoutes.use("/", docterControler_1.default.docter);
 exports.default = docterRoutes;
