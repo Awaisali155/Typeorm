@@ -4,7 +4,8 @@ import patientControler from "../../controlers/patient/patientControler";
 
 const patientRoute=express();
 
+patientRoute.post("/",patientControler.addPatient)
+patientRoute.get("/:id?",patientControler.getPatient)
 
-patientRoute.use("/",patientControler.patient)
 export default patientRoute;
 
