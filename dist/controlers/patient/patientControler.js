@@ -8,9 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const patient_1 = __importDefault(require("../../models/patient"));
 exports.default = {
-    patient: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        res.send("patient");
+    addPatient: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        let patients = [];
+        let patient = patient_1.default.create({ name: req.body.name, age: req.body.age, descise: req.body.descise });
+        yield patient.save();
+        patients.push(patient);
+        res.send(patients);
     }),
+    getPatient: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        let patients = yield patient_1.default.findOne({
+            where: {
+                id: parseInt(req.params.id)
+            }
+        });
+        res.send(patients);
+    })
 };
